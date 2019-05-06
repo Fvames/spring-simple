@@ -1,4 +1,4 @@
-package dev.frames.spring;
+package dev.frames.demo;
 
 import dev.frames.demo.controller.UserController;
 import dev.frames.demo.dao.User;

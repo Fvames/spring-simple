@@ -50,7 +50,7 @@ public class V2BeanDefinitionReader {
                 if (!fileName.endsWith(".class")) {
                     continue;
                 }
-                regiterBeanClass.add(path + "." + fileName.replace(".class", ""));
+                regiterBeanClass.add(scanPackage + "." + fileName.replace(".class", ""));
             }
         }
 
