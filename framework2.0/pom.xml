@@ -6,6 +6,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>framework2.0</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <groupId>dev.fvames</groupId>
     <version>1.0-SNAPSHOT</version>
 

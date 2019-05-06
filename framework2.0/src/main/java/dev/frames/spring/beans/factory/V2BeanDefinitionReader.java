@@ -39,7 +39,8 @@ public class V2BeanDefinitionReader {
     }
 
     private void doScan(String scanPackage) {
-        String path = File.separator + scanPackage.replaceAll("\\.", File.separator);
+        // todo .getResource("/") 从根路径下查找，此处加了 "/" 会找不到，不加才是从 target/class 目录下查找
+        String path = scanPackage.replaceAll("\\.", File.separator);
         File file = new File(getClassLoader().getResource(path).getFile());
         for (File f : file.listFiles()) {
             String fileName = f.getName();

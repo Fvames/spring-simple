@@ -6,10 +6,12 @@
 
     <servlet>
         <servlet-name>dispatcher</servlet-name>
-        <servlet-class>dev.fames.mvc.v2.webmvc.servlet.V2DispatcherServlet</servlet-class>
+        <servlet-class>dev.fames.mvc.v1.DispatcherServlet</servlet-class>
+        <!--<servlet-class>dev.fames.mvc.v2.webmvc.servlet.V2DispatcherServlet</servlet-class>-->
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:v2/application.properties</param-value>
+            <!--<param-value>classpath*:v2/application.properties</param-value>-->
+            <param-value>classpath*:v1/application.properties</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
