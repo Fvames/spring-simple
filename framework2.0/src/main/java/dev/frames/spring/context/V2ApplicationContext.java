@@ -84,6 +84,7 @@ public class V2ApplicationContext implements V2BeanFactory {
 
         //4、拿到BeanWraoper之后，把BeanWrapper保存到IOC容器中去
         this.factoryBeanInstanceCache.put(factoryBeanName, beanWrapper);
+        this.factoryBeanInstanceCache.put(V2BeanDefinition.getBeanClassName(), beanWrapper);
 
         // 注入 org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.checkDependencies 单例检测循环依赖，property 不能处理，构造注入方式不能处理
         populateBean(factoryBeanName, new V2BeanDefinition(), beanWrapper);
