@@ -6,7 +6,47 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>framework2.0</artifactId>
+    <groupId>dev.fvames</groupId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>framework2.0</name>
+
     <dependencies>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <!-- log start -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <!-- log end -->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -14,10 +54,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <groupId>dev.fvames</groupId>
-    <version>1.0-SNAPSHOT</version>
-
-    <name>framework2.0</name>
-
 
 </project>

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class V2ApplicationContext implements V2BeanFactory {
 
@@ -74,9 +75,13 @@ public class V2ApplicationContext implements V2BeanFactory {
 
     @Override
     public Object getBean(String factoryBeanName) {
-        V2BeanDefinition V2BeanDefinition = this.beanDefinitionMap.get(factoryBeanName);
+        if (factoryBeanInstanceCache.containsKey(factoryBeanName)) {
+            return factoryBeanInstanceCache.get(factoryBeanName);
+        }
 
-        Object instance = instantiateBean(factoryBeanName, V2BeanDefinition);
+        V2BeanDefinition v2BeanDefinition = this.beanDefinitionMap.get(factoryBeanName);
+
+        Object instance = instantiateBean(factoryBeanName, v2BeanDefinition);
 
         //3、把这个对象封装到BeanWrapper中
         V2BeanWrapper beanWrapper = new V2BeanWrapper(instance);
@@ -84,7 +89,7 @@ public class V2ApplicationContext implements V2BeanFactory {
 
         //4、拿到BeanWraoper之后，把BeanWrapper保存到IOC容器中去
         this.factoryBeanInstanceCache.put(factoryBeanName, beanWrapper);
-        this.factoryBeanInstanceCache.put(V2BeanDefinition.getBeanClassName(), beanWrapper);
+        this.factoryBeanInstanceCache.put(v2BeanDefinition.getBeanClassName(), beanWrapper);
 
         // 注入 org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.checkDependencies 单例检测循环依赖，property 不能处理，构造注入方式不能处理
         populateBean(factoryBeanName, new V2BeanDefinition(), beanWrapper);
@@ -149,5 +154,15 @@ public class V2ApplicationContext implements V2BeanFactory {
 
 
         return instance;
+    }
+
+    public List<String> getBeanDefinitionNames() {
+
+        return beanDefinitionMap.keySet().stream().collect(Collectors.toList());
+
+    }
+
+    public V2BeanDefinition getBeanDefinition(String name) {
+        return beanDefinitionMap.get(name);
     }
 }
