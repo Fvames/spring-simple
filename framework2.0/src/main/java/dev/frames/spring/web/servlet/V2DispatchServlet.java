@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -29,7 +33,7 @@ public class V2DispatchServlet extends HttpServlet {
 
     /** List of HandlerAdapters used by this servlet. */
     @Nullable
-    //private List<HandlerAdapter> handlerAdapters;
+    private Map<V2HandlerMapping, V2HandlerAdapter> handlerAdapters = new HashMap<>();
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -40,12 +44,57 @@ public class V2DispatchServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        super.doPost(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        try {
+            doDispatch(req, resp);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws InvocationTargetException, IllegalAccessException {
+        V2HandlerMapping handlerMapping = getHandlerMapping(req);
+        if (null == handlerMapping) {
+            processDispatchResult(req, resp, new V2ModelAndView("404"));
+        }
+
+        // 准备调用方法的参数
+        V2HandlerAdapter handlerAdapter = getHandleAdapter(handlerMapping);
+        V2ModelAndView mv = handlerAdapter.handle(req, resp, handlerMapping);
+
+        // 输出
+        processDispatchResult(req, resp, mv);
+    }
+
+    private void processDispatchResult(HttpServletRequest req, HttpServletResponse resp, V2ModelAndView mv) {
+
+    }
+
+    private V2HandlerAdapter getHandleAdapter(V2HandlerMapping handlerMapping) {
+        return handlerAdapters.get(handlerMapping);
+    }
+
+    private V2HandlerMapping getHandlerMapping(HttpServletRequest req) {
+
+        String uri = req.getRequestURI();
+        String contextPath = req.getContextPath();
+        String url = uri.replace(contextPath, "").replaceAll("/+", "");
+
+        for (V2HandlerMapping handlerMapping : handlerMappings) {
+            Matcher matcher = handlerMapping.getPattern().matcher(url);
+            if (!matcher.matches()) {
+                continue;
+            }
+            return handlerMapping;
+        }
+
+        return null;
     }
 
     protected void initStrategies(V2ApplicationContext context) {
@@ -104,7 +153,9 @@ public class V2DispatchServlet extends HttpServlet {
     }
 
     private void initHandlerAdapters(V2ApplicationContext context) {
-
+        for (V2HandlerMapping handlerMapping : handlerMappings) {
+            handlerAdapters.put(handlerMapping, new V2HandlerAdapter());
+        }
     }
 
 }

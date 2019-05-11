@@ -76,7 +76,7 @@ public class V2HandlerAdpater {
 
         boolean isModelAndView = handlerMapping.getMethod().getReturnType() == V2ModelAndView.class;
         if (isModelAndView) {
-            return (V2ModelAndView) request;
+            return (V2ModelAndView) result;
         } else {
             return null;
         }
