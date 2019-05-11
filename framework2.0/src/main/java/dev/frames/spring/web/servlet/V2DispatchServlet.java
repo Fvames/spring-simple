@@ -4,6 +4,8 @@ import com.sun.istack.internal.Nullable;
 import dev.frames.spring.annotation.Controller;
 import dev.frames.spring.annotation.RequestMapping;
 import dev.frames.spring.context.V2ApplicationContext;
+import dev.frames.spring.web.V2View;
+import dev.frames.spring.web.V2ViewResolver;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletConfig;
@@ -11,8 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +37,8 @@ public class V2DispatchServlet extends HttpServlet {
     @Nullable
     private Map<V2HandlerMapping, V2HandlerAdapter> handlerAdapters = new HashMap<>();
 
+    private List<V2ViewResolver> viewResolvers = new ArrayList<V2ViewResolver>();
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         V2ApplicationContext applicationContext = new V2ApplicationContext(config.getInitParameter(CONTEXT_CONFIG_LOCATION));
@@ -51,14 +55,12 @@ public class V2DispatchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             doDispatch(req, resp);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws InvocationTargetException, IllegalAccessException {
+    private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         V2HandlerMapping handlerMapping = getHandlerMapping(req);
         if (null == handlerMapping) {
             processDispatchResult(req, resp, new V2ModelAndView("404"));
@@ -72,8 +74,16 @@ public class V2DispatchServlet extends HttpServlet {
         processDispatchResult(req, resp, mv);
     }
 
-    private void processDispatchResult(HttpServletRequest req, HttpServletResponse resp, V2ModelAndView mv) {
+    private void processDispatchResult(HttpServletRequest req, HttpServletResponse resp, V2ModelAndView mv) throws IOException {
+        if (null == mv || this.viewResolvers.isEmpty()) {
+            return;
+        }
 
+        for (V2ViewResolver viewResolver : this.viewResolvers) {
+            V2View v2View = viewResolver.resolveViewName(mv.getView());
+            v2View.render(mv.getModel(), req, resp);
+            return;
+        }
     }
 
     private V2HandlerAdapter getHandleAdapter(V2HandlerMapping handlerMapping) {
@@ -105,8 +115,16 @@ public class V2DispatchServlet extends HttpServlet {
         initHandlerAdapters(context);
         //initHandlerExceptionResolvers(context);
         //initRequestToViewNameTranslator(context);
-        //initViewResolvers(context);
+        initViewResolvers(context);
         //initFlashMapManager(context);
+    }
+
+    private void initViewResolvers(V2ApplicationContext context) {
+        String templateRoot = context.getConfig().getProperty("templateRoot");
+        String templateRootPath = this.getClass().getClassLoader().getResource(templateRoot).getFile();
+        for (File file : new File(templateRootPath).listFiles()) {
+            viewResolvers.add(new V2ViewResolver(file));
+        }
     }
 
     private void initHandlerMappings(V2ApplicationContext context) {

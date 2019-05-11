@@ -87,4 +87,9 @@ public class V2BeanDefinitionReader {
     private ClassLoader getClassLoader() {
         return this.getClass().getClassLoader();
     }
+
+    public Properties getConfig() {
+
+        return this.properties;
+    }
 }

@@ -4,27 +4,27 @@ import java.util.Map;
 
 public class V2ModelAndView {
 
-    private Object view;
+    private String view;
 
     /**
      * Model Map
      */
     private Map<String, ?> model;
 
-    public V2ModelAndView(Object view) {
+    public V2ModelAndView(String view) {
         this.view = view;
     }
 
-    public V2ModelAndView(Object view, Map<String, ?> model) {
+    public V2ModelAndView(String view, Map<String, ?> model) {
         this.view = view;
         this.model = model;
     }
 
-    public Object getView() {
+    public String getView() {
         return view;
     }
 
-    public void setView(Object view) {
+    public void setView(String view) {
         this.view = view;
     }
 

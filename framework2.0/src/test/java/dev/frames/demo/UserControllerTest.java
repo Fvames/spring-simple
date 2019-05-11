@@ -1,8 +1,8 @@
 package dev.frames.demo;
 
 import dev.frames.demo.controller.UserController;
-import dev.frames.demo.dao.User;
 import dev.frames.spring.context.V2ApplicationContext;
+import dev.frames.spring.web.servlet.V2ModelAndView;
 import org.junit.Test;
 
 public class UserControllerTest {
@@ -13,7 +13,7 @@ public class UserControllerTest {
 
         UserController userController = (UserController) applicationContext.getBean("userController");
 
-        User user = userController.getUser("琼恩");
+        V2ModelAndView user = userController.getUser("琼恩");
         System.out.println("user: " + user);
 
     }

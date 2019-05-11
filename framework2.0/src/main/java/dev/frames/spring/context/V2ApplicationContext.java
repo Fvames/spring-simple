@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -164,5 +165,9 @@ public class V2ApplicationContext implements V2BeanFactory {
 
     public V2BeanDefinition getBeanDefinition(String name) {
         return beanDefinitionMap.get(name);
+    }
+
+    public Properties getConfig() {
+        return this.reader.getConfig();
     }
 }
