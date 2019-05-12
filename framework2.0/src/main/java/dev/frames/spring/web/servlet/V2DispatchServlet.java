@@ -6,7 +6,6 @@ import dev.frames.spring.annotation.RequestMapping;
 import dev.frames.spring.context.V2ApplicationContext;
 import dev.frames.spring.web.V2View;
 import dev.frames.spring.web.V2ViewResolver;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -26,7 +25,6 @@ import java.util.regex.Pattern;
 /**
  * @version 2019/5/9 15:15
  */
-@Slf4j
 public class V2DispatchServlet extends HttpServlet {
 
     public static final String CONTEXT_CONFIG_LOCATION = "contextConfigLocation";
@@ -44,11 +42,13 @@ public class V2DispatchServlet extends HttpServlet {
         V2ApplicationContext applicationContext = new V2ApplicationContext(config.getInitParameter(CONTEXT_CONFIG_LOCATION));
 
         initStrategies(applicationContext);
+
+        System.out.println(">>>>>>> init mvc");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class V2DispatchServlet extends HttpServlet {
     private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         V2HandlerMapping handlerMapping = getHandlerMapping(req);
         if (null == handlerMapping) {
-            processDispatchResult(req, resp, new V2ModelAndView("404"));
+            processDispatchResult(req, resp, new V2ModelAndView("/404"));
         }
 
         // 准备调用方法的参数
@@ -81,8 +81,11 @@ public class V2DispatchServlet extends HttpServlet {
 
         for (V2ViewResolver viewResolver : this.viewResolvers) {
             V2View v2View = viewResolver.resolveViewName(mv.getView());
-            v2View.render(mv.getModel(), req, resp);
-            return;
+            if (null != v2View) {
+
+                v2View.render(mv.getModel(), req, resp);
+                return;
+            }
         }
     }
 
@@ -94,7 +97,7 @@ public class V2DispatchServlet extends HttpServlet {
 
         String uri = req.getRequestURI();
         String contextPath = req.getContextPath();
-        String url = uri.replace(contextPath, "").replaceAll("/+", "");
+        String url = uri.replace(contextPath, "");
 
         for (V2HandlerMapping handlerMapping : handlerMappings) {
             Matcher matcher = handlerMapping.getPattern().matcher(url);
@@ -123,7 +126,7 @@ public class V2DispatchServlet extends HttpServlet {
         String templateRoot = context.getConfig().getProperty("templateRoot");
         String templateRootPath = this.getClass().getClassLoader().getResource(templateRoot).getFile();
         for (File file : new File(templateRootPath).listFiles()) {
-            viewResolvers.add(new V2ViewResolver(file));
+            viewResolvers.add(new V2ViewResolver(new File(templateRootPath)));
         }
     }
 
@@ -165,7 +168,7 @@ public class V2DispatchServlet extends HttpServlet {
 
                 handlerMappings.add(new V2HandlerMapping(controller, method, pattern));
 
-                log.info(">>>>>> init mapping " + regex + ", method: " + method);
+                System.out.println(">>>>>> init mapping " + regex + ", method: " + method);
             }
         }
     }

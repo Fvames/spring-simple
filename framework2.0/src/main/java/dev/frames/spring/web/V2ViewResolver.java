@@ -21,9 +21,11 @@ public class V2ViewResolver {
         }
 
         viewName = viewName.endsWith(DEFULT_TEMPLATE_SUFFIX) ? viewName : (viewName + DEFULT_TEMPLATE_SUFFIX);
-        String filePath = (templateRootDir.getPath() + File.separator + viewName).replaceAll("/+", "");
+        String filePath = (templateRootDir.getPath() + viewName);
         return new V2View(new File(filePath));
     }
 
-
+    public String getViewName() {
+        return viewName;
+    }
 }

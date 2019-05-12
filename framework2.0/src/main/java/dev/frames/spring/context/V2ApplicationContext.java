@@ -48,6 +48,8 @@ public class V2ApplicationContext implements V2BeanFactory {
         // 4.初始化未延迟的 bean， Di
         doAutoWired();
 
+        System.out.println(">>>>>>>> 初始化完成");
+
     }
 
     private void doAutoWired() {
@@ -73,12 +75,14 @@ public class V2ApplicationContext implements V2BeanFactory {
         }
     }
 
-
+    /**
+     * initHandleMapping 会再次 di 一次
+     *
+     * @param factoryBeanName
+     * @return
+     */
     @Override
     public Object getBean(String factoryBeanName) {
-        if (factoryBeanInstanceCache.containsKey(factoryBeanName)) {
-            return factoryBeanInstanceCache.get(factoryBeanName);
-        }
 
         V2BeanDefinition v2BeanDefinition = this.beanDefinitionMap.get(factoryBeanName);
 

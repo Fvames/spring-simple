@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class V2View {
 
     public static final String DEFAULT_CONTENT_TYPE = "text/html;charset=utf-8";
-    private final File file;
+    private File file;
 
     public V2View(File file) {
         this.file = file;
@@ -20,33 +20,29 @@ public class V2View {
 
     public void render(Map<String, ?> model, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         StringBuffer sb = new StringBuffer();
+
         RandomAccessFile ra = new RandomAccessFile(this.file, "r");
 
-        try {
-            String line;
-            while (null != (line = ra.readLine())) {
-                line = new String(line.getBytes("ISO-8859-1"), "utf-8");
-                Pattern pattern = Pattern.compile("$\\{[^\\}]+\\}", Pattern.CASE_INSENSITIVE);
-                Matcher matcher = pattern.matcher(line);
-
-                while (matcher.find()) {
-                    String paramName = matcher.group();
-                    paramName = paramName.replaceAll("$\\{|\\}", "");
-                    Object paramValue = model.get(paramName);
-                    if (null == paramValue) {
-                        continue;
-                    }
-
-                    line = matcher.replaceFirst(makeStringForRegExp(paramValue.toString()));
-                    matcher = pattern.matcher(line);
+        String line = null;
+        while (null != (line = ra.readLine())) {
+            line = new String(line.getBytes("ISO-8859-1"), "utf-8");
+            Pattern pattern = Pattern.compile("\\$\\{[^\\}]+\\}", Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(line);
+            while (matcher.find()) {
+                String paramName = matcher.group();
+                paramName = paramName.replaceAll("\\$\\{|\\}", "");
+                Object paramValue = model.get(paramName);
+                if (null == paramValue) {
+                    continue;
                 }
-                sb.append(line);
+                line = matcher.replaceFirst(makeStringForRegExp(paramValue.toString()));
+                matcher = pattern.matcher(line);
             }
-        } finally {
-            ra.close();
+            sb.append(line);
         }
 
         resp.setCharacterEncoding("utf-8");
+        //        resp.setContentType(DEFULAT_CONTENT_TYPE);
         resp.getWriter().write(sb.toString());
     }
 

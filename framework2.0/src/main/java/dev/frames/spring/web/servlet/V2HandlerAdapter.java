@@ -36,12 +36,19 @@ public class V2HandlerAdapter {
 
         // 获取方法参数类型
 
-        Class<?>[] paramterType = handlerMapping.getMethod().getParameterTypes();
+        Class<?>[] paramterTypes = handlerMapping.getMethod().getParameterTypes();
+        for (int i = 0; i < paramterTypes.length; i++) {
+            Class<?> type = paramterTypes[i];
+            if (type == HttpServletRequest.class ||
+                    type == HttpServletResponse.class) {
+                paramterIndex.put(type.getName(), i);
+            }
+        }
 
         // 获取请求参数
         Map<String, String[]> reqParamterMap = req.getParameterMap();
 
-        Object[] paramterValues = new Object[paramterType.length];
+        Object[] paramterValues = new Object[paramterTypes.length];
         // 匹配参数，获取位置
         for (Map.Entry<String, String[]> param : reqParamterMap.entrySet()) {
 
