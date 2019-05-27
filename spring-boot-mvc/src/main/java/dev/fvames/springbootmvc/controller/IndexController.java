@@ -1,16 +1,32 @@
 package dev.fvames.springbootmvc.controller;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class IndexController {
 
-    @RequestMapping("/indexBoot")
+    @RequestMapping("/jsp")
+    public String jsp() {
+        System.out.println(">>> jsp");
+        return "hello-jsp";
+    }
+
+    @RequestMapping("/freemarker")
+    public String freemarker() {
+        System.out.println(">>> freemarker");
+        return "freemarker";
+    }
+
+    @RequestMapping("/freemarker1")
+    public String freemarker1() {
+        System.out.println(">>> freemarker1");
+        return "freemarker1";
+    }
+
+    @RequestMapping("/thymeleaf")
     public String index() {
-        System.out.println("indexBoot");
+        System.out.println(">>> thymeleaf");
         return "index";
     }
 
