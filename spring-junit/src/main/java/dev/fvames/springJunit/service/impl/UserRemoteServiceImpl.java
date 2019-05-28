@@ -10,12 +10,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 内存实现
+ * 远程接口
  *
  * @version 2019/5/27 17:56
  */
 @Service
-public class InMemoryUserServiceImpl implements IUserService {
+public class UserRemoteServiceImpl implements IUserService {
 
     private Map<String, User> cache = new HashMap<>();
 

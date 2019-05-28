@@ -2,6 +2,8 @@ package dev.fvames.springJunit.service;
 
 import dev.fvames.springJunit.domain.User;
 
+import java.util.List;
+
 /**
  * 用户服务
  *
@@ -12,4 +14,5 @@ public interface IUserService {
 
     boolean save(User user);
 
+    List<User> findAll();
 }
