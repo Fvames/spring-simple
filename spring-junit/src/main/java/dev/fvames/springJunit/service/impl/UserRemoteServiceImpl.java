@@ -1,7 +1,7 @@
 package dev.fvames.springJunit.service.impl;
 
 import dev.fvames.springJunit.domain.User;
-import dev.fvames.springJunit.service.IUserService;
+import dev.fvames.springJunit.service.RemoteUserService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * @version 2019/5/27 17:56
  */
 @Service
-public class UserRemoteServiceImpl implements IUserService {
+public class UserRemoteServiceImpl implements RemoteUserService {
 
     private Map<String, User> cache = new HashMap<>();
 
