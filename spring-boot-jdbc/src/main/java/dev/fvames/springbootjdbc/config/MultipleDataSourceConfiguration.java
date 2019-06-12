@@ -21,7 +21,7 @@ public class MultipleDataSourceConfiguration {
         // com.mysql.cj.jdbc.Driver
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         DataSource dataSource = dataSourceBuilder
-                .driverClassName("com.mysql.jdbc.Driver")
+                .driverClassName("com.mysql.cj.jdbc.Driver")
                 .url("jdbc:mysql://192.168.17.129:3306/test")
                 .username("root")
                 .password("123456")
@@ -33,7 +33,7 @@ public class MultipleDataSourceConfiguration {
     public DataSource salveDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         DataSource dataSource = dataSourceBuilder
-                .driverClassName("com.mysql.jdbc.Driver")
+                .driverClassName("com.mysql.cj.jdbc.Driver")
                 .url("jdbc:mysql://192.168.17.129:3306/test2")
                 .username("root")
                 .password("123456")

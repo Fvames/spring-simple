@@ -3,7 +3,6 @@ package dev.fvames.springbootjdbc.controller;
 import dev.fvames.springbootjdbc.domain.UserInfo;
 import dev.fvames.springbootjdbc.repository.UserRepository;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -19,8 +18,13 @@ public class UserController {
     }
 
     @PostMapping("/user/save")
-    public Boolean save(@RequestBody UserInfo user) {
+    public Boolean save(String userName) {
         System.out.println(">>>> save");
+        UserInfo user = new UserInfo();
+        user.setUserName(userName);
+
         return userRepository.jdbcSave(user);
+        //return userRepository.transactionalSave(user);
+        //return userRepository.save(user);
     }
 }
