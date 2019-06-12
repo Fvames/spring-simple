@@ -2,7 +2,9 @@ package dev.fvames.springbootjdbc.controller;
 
 import dev.fvames.springbootjdbc.domain.UserInfo;
 import dev.fvames.springbootjdbc.repository.UserRepository;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,13 +19,13 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/user/save")
-    public Boolean save(String userName) {
+    @GetMapping(value = "/web/mvc/user/save", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Boolean save(@RequestBody UserInfo userInfo) {
         System.out.println(">>>> save");
-        UserInfo user = new UserInfo();
-        user.setUserName(userName);
+        //UserInfo user = new UserInfo();
+        //user.setUserName(userName);
 
-        return userRepository.jdbcSave(user);
+        return userRepository.jdbcSave(userInfo);
         //return userRepository.transactionalSave(user);
         //return userRepository.save(user);
     }
