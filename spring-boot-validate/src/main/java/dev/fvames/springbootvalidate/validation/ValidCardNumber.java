@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = ValidCardNumberConstraintValidator.class)
 public @interface ValidCardNumber {
 
-	String message();
+	String message() default "{invalid.card.number.message}";
 
 	Class<?>[] groups() default {};
 

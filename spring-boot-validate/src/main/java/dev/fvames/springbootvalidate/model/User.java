@@ -16,7 +16,8 @@ public class User {
 	@Max(100)
 	private Long id;
 	private String userName;
-	@ValidCardNumber(message = "卡号需要以 “LJ” 开头，以数字结尾。")
+	//@ValidCardNumber(message = "卡号需要以 “LJ” 开头，以数字结尾。")
+	@ValidCardNumber
 	private String cardNumber;
 
 	public Long getId() {
