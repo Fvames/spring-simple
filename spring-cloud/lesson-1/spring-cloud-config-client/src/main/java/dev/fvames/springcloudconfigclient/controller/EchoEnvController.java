@@ -30,7 +30,7 @@ public class EchoEnvController {
 
 	@GetMapping("/echo/env")
 	public String echoEnv() {
-		String port = environment.getProperty("server-port");
+		String port = environment.getProperty("server.port");
 		return port;
 	}
 }
