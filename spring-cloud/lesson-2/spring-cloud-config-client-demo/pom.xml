@@ -24,6 +24,7 @@
 
     <dependencies>
 
+        <!--  actuator 依赖，展示 health api 路径  -->
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
