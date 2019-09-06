@@ -1,10 +1,12 @@
 package dev.fvames.springcloudconfigclientdemo;
 
+import dev.fvames.springcloudconfigclientdemo.health.MyHealthIndicator;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.context.refresh.ContextRefresher;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.Set;
 
@@ -24,7 +26,7 @@ public class SpringCloudConfigClientDemoApplication {
 		this.environment = environment;
 	}
 
-	@Scheduled(fixedRate = 5 * 1000, initialDelay = 3 * 1000)
+	//@Scheduled(fixedRate = 5 * 1000, initialDelay = 3 * 1000)
 	public void autoRefresh() {
 
 		Set<String> updatedPropertyNames = contextRefresher.refresh();
@@ -34,5 +36,12 @@ public class SpringCloudConfigClientDemoApplication {
 						propertyName,
 						environment.getProperty(propertyName))
 		);
+	}
+
+	// healthEndpoint: healthIndicator, 一对多
+	// healthIndicator 健康指示器
+	@Bean
+	public HealthIndicator myHealthIndicator() {
+		return new MyHealthIndicator();
 	}
 }
