@@ -2,6 +2,7 @@ package dev.fvames.user.service;
 
 import dev.fvames.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collection;
@@ -9,6 +10,7 @@ import java.util.Collection;
 /**
  * {@link UserService 用户服务} Proxy 实现
  */
+@Service
 public class UserSeriecProxy implements UserService{
 
     public static final String PROVIDER_SERVER_URL_PROXY = "http://user-service-provider";
