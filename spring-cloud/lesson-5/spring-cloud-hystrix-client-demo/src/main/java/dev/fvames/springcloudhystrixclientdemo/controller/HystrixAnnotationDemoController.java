@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @version 2019/9/16 17:08
  */
 @RestController
-public class HystrixDemoController {
+public class HystrixAnnotationDemoController {
 
 	/**
 	 * 当调用 {@link #helloWorld()} 超时或失败时，
