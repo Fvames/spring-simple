@@ -1,31 +1,28 @@
 package dev.fvames.rabbitmq.consumer;
 
-import dev.fvames.rabbitmq.config.Constant;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Component;
-
 /**
  * 消费者
  *
  * @version 2019/9/10 10:26
  */
 
-@Component
-public class FirstQueueConsumer {
+/*@Component
+@RabbitListener(queues = Constant.QUEUE_FIRST)
+public class SecondQueueConsumer {
 
-	@RabbitListener(queues = Constant.QUEUE_FIRST)
+	@RabbitHandler
 	public void processFirst(String msg) {
 		System.out.printf("First Queue received msg context: %s \n", msg);
 	}
 
-	@RabbitListener(queues = Constant.QUEUE_SECOND)
+	@RabbitHandler
 	public void processSecond(String msg) {
 		System.out.printf("Second Queue received msg context: %s \n", msg);
 	}
 
-	@RabbitListener(queues = Constant.QUEUE_THIRD)
+	@RabbitHandler
 	public void processThird(String msg) {
 		System.out.printf("Third Queue received msg context: %s \n", msg);
 	}
 
-}
+}*/

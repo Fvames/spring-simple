@@ -3,7 +3,6 @@ package dev.fvames.rabbitmq.config;
 /**
  * 常量
  *
- * @author op_lisj@essence.com.cn
  * @version 2019/9/10 10:23
  */
 

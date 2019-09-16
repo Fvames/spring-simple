@@ -10,7 +10,6 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * 发送者
  *
- * @author op_lisj@essence.com.cn
  * @version 2019/9/10 10:21
  */
 @Component

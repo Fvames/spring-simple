@@ -1,6 +1,5 @@
 package dev.fvames.rabbitmq;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import dev.fvames.rabbitmq.provider.MyProvider;
 import dev.fvames.rabbitmq.provider.TopicProvider;
 import dev.fvames.rabbitmq.provider.User;
@@ -10,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 测试
  *
- * @author op_lisj@essence.com.cn
  * @version 2019/9/10 10:30
  */
 @RunWith(SpringRunner.class)
@@ -27,20 +27,22 @@ public class SpringBootRabbitMQDemoApplicationTest {
 
 	@Test
 	public void firstQueueSend() {
-		//myProvider.sendToFirst();
+		myProvider.sendToFirst();
 		//myProvider.sendToSecond();
 		//myProvider.sendToThird();
 
-		myProvider.sendToSnsServer();
+		//myProvider.sendToSnsServer();
 	}
 
 	@Test
-	public void sendToTopic() throws JsonProcessingException {
+	public void sendToTopic() throws Exception {
 		User user = new User();
 		user.setId(1L);
 		user.setAge(23);
 		user.setUserName("张三");
 
 		topicProvider.sendToTopicCard(user);
+
+		TimeUnit.SECONDS.sleep(10);
 	}
 }

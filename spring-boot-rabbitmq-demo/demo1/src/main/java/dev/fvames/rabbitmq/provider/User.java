@@ -1,13 +1,14 @@
 package dev.fvames.rabbitmq.provider;
 
+import java.io.Serializable;
+
 /**
  * TODO 类描述
  *
- * @author op_lisj@essence.com.cn
  * @version 2019/9/11 11:08
  */
 
-public class User {
+public class User implements Serializable {
 
 	private Long id;
 	private String userName;
