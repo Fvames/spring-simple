@@ -6,6 +6,7 @@
     <modules>
         <module>person-api</module>
         <module>person-client</module>
+        <module>person-server</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
