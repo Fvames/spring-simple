@@ -2,10 +2,12 @@ package dev.fvames.spring.cloud.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
 @EnableZuulProxy
+@EnableDiscoveryClient
 public class SpringCloudZuulDemoApplication {
 
 	public static void main(String[] args) {
