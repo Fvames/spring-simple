@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @version 2019/9/20 18:00
  */
 @Component
-public class MessageConsumerBean {
+public class KafkaConsumerListener {
 
 	@KafkaListener(topics = "${kafka.topic}")
 	public void onMessage(String message) {
