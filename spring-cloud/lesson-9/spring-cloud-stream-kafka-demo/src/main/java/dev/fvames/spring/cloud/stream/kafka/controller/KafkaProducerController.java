@@ -37,4 +37,11 @@ public class KafkaProducerController {
 
 		return true;
 	}
+
+	@PostMapping("/stream/message/send/to/test")
+	public Boolean messageSendToTest(@RequestParam String message) {
+		producerBean.sendToTest(message);
+
+		return true;
+	}
 }

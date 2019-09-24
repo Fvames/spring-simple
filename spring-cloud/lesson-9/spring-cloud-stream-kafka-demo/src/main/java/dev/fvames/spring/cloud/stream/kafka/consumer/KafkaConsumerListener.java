@@ -16,4 +16,9 @@ public class KafkaConsumerListener {
 
 		System.out.println("Kafka 消费者监听器，接受到消息：" + message);
 	}
+
+	@KafkaListener(topics = "${kafka.lj.topic}")
+	public void onGupaoMessage(String message) {
+		System.out.println("Kafka 消费者监听 lj topic，接受到消息：" + message);
+	}
 }
