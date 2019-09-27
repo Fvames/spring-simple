@@ -1,5 +1,6 @@
 package dev.fvames.spring.cloud.feign.client;
 
+import dev.fvames.spring.cloud.feign.api.service.DepartmentService;
 import dev.fvames.spring.cloud.feign.api.service.PersonService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +11,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
  * @version 2019/9/27 14:12
  */
 @SpringBootApplication
-@EnableFeignClients(clients = PersonService.class)
+@EnableFeignClients(clients = {PersonService.class, DepartmentService.class})
 @EnableDiscoveryClient
 public class PersonClientApplication {
 
