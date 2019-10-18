@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-framework-3.2.x-sample</module>
+        <module>spring-webmvc-3.2.x-sample</module>
     </modules>
 
     <properties>
