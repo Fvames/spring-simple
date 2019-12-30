@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * 测试
  *
@@ -43,6 +41,6 @@ public class SpringBootRabbitMQDemoApplicationTest {
 
 		topicProvider.sendToTopicCard(user);
 
-		TimeUnit.SECONDS.sleep(10);
+		//TimeUnit.SECONDS.sleep(10);
 	}
 }
