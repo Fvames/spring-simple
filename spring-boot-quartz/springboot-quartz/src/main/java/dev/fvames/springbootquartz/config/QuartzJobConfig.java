@@ -1,5 +1,6 @@
-package dev.fvames.springbootquartz;
+package dev.fvames.springbootquartz.config;
 
+import dev.fvames.springbootquartz.job.TestJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;

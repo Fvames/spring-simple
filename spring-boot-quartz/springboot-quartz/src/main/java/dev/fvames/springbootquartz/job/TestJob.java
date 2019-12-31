@@ -1,4 +1,4 @@
-package dev.fvames.springbootquartz;
+package dev.fvames.springbootquartz.job;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

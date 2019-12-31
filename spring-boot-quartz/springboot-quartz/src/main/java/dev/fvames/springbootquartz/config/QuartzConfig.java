@@ -1,4 +1,4 @@
-package dev.fvames.springbootquartz;
+package dev.fvames.springbootquartz.config;
 
 import org.quartz.Trigger;
 import org.slf4j.Logger;
