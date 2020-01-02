@@ -200,7 +200,6 @@ CREATE TABLE `sys_job` (
 
 -- 插入3条数据，3个任务
 -- 注意第三条，是一个发送邮件的任务，需要改成你自己的QQ和授权码。
-INSERT INTO `sys_job` (`id`, `job_name`, `job_group`, `job_cron`, `job_class_path`, `job_data_map`, `job_status`, `job_describe`) VALUES (22, 'test', 'test', '*/20 * * * * ?', 'com.gupaoedu.demo.task.TestTask1', NULL, 1, 'a job a');
-INSERT INTO `sys_job` (`id`, `job_name`, `job_group`, `job_cron`, `job_class_path`, `job_data_map`, `job_status`, `job_describe`) VALUES (23, 'test2', 'test', '*/30 * * * * ?', 'com.gupaoedu.demo.task.TestTask2', NULL, 1, 'another job');
+INSERT INTO `sys_job` (`id`, `job_name`, `job_group`, `job_cron`, `job_class_path`, `job_data_map`, `job_status`, `job_describe`) VALUES (22, 'test', 'test', '*/20 * * * * ?', 'dev.fvames.springbootquartz.job.TestTask1', NULL, 1, 'a job a');
 INSERT INTO `sys_job` (`id`, `job_name`, `job_group`, `job_cron`, `job_class_path`, `job_data_map`, `job_status`, `job_describe`) VALUES (24, 'test3', 'mail', '*/10 * * * * ?', 'com.gupaoedu.demo.task.TestTask3', '{\"data\":{\"loginAccount\":\"改成你的QQ邮箱\",\"loginAuthCode\":\"改成你的邮箱授权码\",\"sender\":\"改成你的QQ邮箱\",\"emailContent\":\"&nbsp;&nbsp;&nbsp;&nbsp邮箱内容\",\"emailContentType\":\"text/html;charset=utf-8\",\"emailSubject\":\"十万火急\",\"recipients\":\"改成你要的收件人邮箱，可以有多个，英文逗号隔开\"}}', 1, 'fdsafdfds');
 

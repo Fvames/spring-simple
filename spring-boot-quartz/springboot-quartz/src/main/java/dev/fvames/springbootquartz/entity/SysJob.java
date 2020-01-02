@@ -8,6 +8,8 @@ public class SysJob implements Serializable {
 	 * 任务调度类
 	 */
 	private static final long serialVersionUID = 3746569356086283114L;
+	public static final Integer JOB_STATE_YES = 1;
+	public static final Integer JOB_STATE_NO = 0;
 
 	private Integer id; //任务ID
 	private String jobName; //任务名称
@@ -96,5 +98,4 @@ public class SysJob implements Serializable {
 	public void setJobDataMap(String jobDataMap) {
 		this.jobDataMap = jobDataMap;
 	}
-	
 }
