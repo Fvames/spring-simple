@@ -3,8 +3,8 @@ package dev.fvames.springbootquartz.mapper;
 import dev.fvames.springbootquartz.entity.SysJob;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TODO 类描述
@@ -27,7 +27,7 @@ public interface SysJobMapper {
 	 *
 	 * @param map
 	 */
-	List<SysJob> querySysJobList(HashMap<String, String> map);
+	List<SysJob> querySysJobList(Map<String, String> map);
 
 	/**
 	 * 新增定时任务

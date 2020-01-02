@@ -8,8 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TODO 类描述
@@ -26,7 +26,7 @@ public class SysJobService {
 		return sysJobMapper.getJobCount();
 	}
 
-	public List<SysJob> querySysJobList(HashMap<String, String> map) {
+	public List<SysJob> querySysJobList(Map<String, String> map) {
 		return sysJobMapper.querySysJobList(map);
 	}
 

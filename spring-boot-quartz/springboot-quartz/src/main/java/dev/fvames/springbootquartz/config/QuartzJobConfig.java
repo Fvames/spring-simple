@@ -1,24 +1,18 @@
 package dev.fvames.springbootquartz.config;
 
-import dev.fvames.springbootquartz.job.TestJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
-import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 
 /**
  * description: 配置定时任务
  */
-@Configuration
+//@Configuration
 //@Profile({"stg-job", "prd"})
 @SuppressWarnings("unused")
 public class QuartzJobConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(QuartzJobConfig.class);
 
-    @Bean
+    /*@Bean
     public JobDetailFactoryBean testJobDetailFactory() {
         JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
         jobDetailFactory.setName("test-job");
@@ -38,6 +32,6 @@ public class QuartzJobConfig {
         tigger.setCronExpression("0/10 * * * * ?");
         tigger.setName("test-job-trigger");
         return tigger;
-    }
+    }*/
 
 }
