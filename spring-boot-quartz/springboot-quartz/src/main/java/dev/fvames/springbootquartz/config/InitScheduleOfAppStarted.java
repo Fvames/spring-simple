@@ -33,8 +33,8 @@ public class InitScheduleOfAppStarted implements CommandLineRunner {
 
 	@Autowired
 	private SysJobService sysJobService;
-	//@Autowired
-	//private SpringJobFactory springJobFactory;
+	@Autowired
+	private SpringJobFactory springJobFactory;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -48,7 +48,8 @@ public class InitScheduleOfAppStarted implements CommandLineRunner {
 
 		SchedulerFactory sf = new StdSchedulerFactory();
 		Scheduler scheduler = sf.getScheduler();
-		//scheduler.setJobFactory(springJobFactory);
+		// 注入 spring 示例，否则执行时找不到 spring 容器中的 bean
+		scheduler.setJobFactory(springJobFactory);
 		scheduler.start();
 
 		for (SysJob sysJob : jobList) {

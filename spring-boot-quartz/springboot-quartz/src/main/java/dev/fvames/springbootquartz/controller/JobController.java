@@ -198,7 +198,7 @@ public class JobController {
 		if (null == existBean) {
 			throw new BizException("任务 id 为 " + id + " 的 Job 不存在");
 		}
-
-		return sysJobService.reSchedulejob(existBean);
+		sysJob.setJobStatus(existBean.getJobStatus());
+		return sysJobService.reSchedulejob(sysJob);
 	}
 }

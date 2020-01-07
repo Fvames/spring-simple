@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
+ * SchedulerFactoryBean 实现 InitializingBean，
  * description: quartz定时任务配置
  */
 @Configuration
