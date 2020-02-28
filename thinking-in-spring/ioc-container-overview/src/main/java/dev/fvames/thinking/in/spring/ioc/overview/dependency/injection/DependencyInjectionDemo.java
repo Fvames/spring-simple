@@ -1,4 +1,4 @@
-package dev.fvames.thinking.in.spring.ioc.overview.dependenecy.injection;
+package dev.fvames.thinking.in.spring.ioc.overview.dependency.injection;
 
 import dev.fvames.thinking.in.spring.ioc.overview.repository.UserRepository;
 import org.springframework.beans.factory.BeanFactory;
