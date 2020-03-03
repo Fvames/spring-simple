@@ -14,7 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class BeanAliasDemo {
 
 	public static void main(String[] args) {
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("MATE-INF/bean-definition-context.xml");
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("META-INF/bean-definition-context.xml");
 		User user = applicationContext.getBean("user", User.class);
 		User aliasUser = applicationContext.getBean("alias-user", User.class);
 
