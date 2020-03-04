@@ -59,4 +59,9 @@ public class DefaultUserFactory implements UserFactory, InitializingBean, Dispos
     public void destroyUserFactory() {
         System.out.println("自定义 destroyUserFactory() 销毁中");
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("finalize() 销毁中 ");
+    }
 }
