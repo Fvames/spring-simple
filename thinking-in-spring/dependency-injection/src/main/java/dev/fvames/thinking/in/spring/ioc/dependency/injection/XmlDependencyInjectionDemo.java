@@ -5,14 +5,14 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
 /**
- * 基于 XML 资源的依赖 Setter 方法
+ * 基于 XML 资源的依赖注入
  */
-public class XmlDependencySetterInjectionDemo {
+public class XmlDependencyInjectionDemo {
 
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
-        String xmlResourcePath = "META-INF/dependency-setter-injection.xml";
+        String xmlResourcePath = "META-INF/dependency-injection.xml";
         beanDefinitionReader.loadBeanDefinitions(xmlResourcePath);
 
         UserHolder userHolder = beanFactory.getBean(UserHolder.class);

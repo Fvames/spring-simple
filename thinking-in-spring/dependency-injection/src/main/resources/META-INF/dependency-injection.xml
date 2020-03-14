@@ -6,8 +6,12 @@
 
     <import resource="dependency-lookup-context.xml" />
 
-    <bean class="dev.fvames.thinking.in.spring.ioc.dependency.injection.domain.UserHolder">
+    <!--  setter 注入  -->
+    <!--<bean class="dev.fvames.thinking.in.spring.ioc.dependency.injection.domain.UserHolder">
         <property name="user" ref="superUser" />
-    </bean>
+    </bean>-->
 
+    <!--  构造器注入  -->
+    <bean class="dev.fvames.thinking.in.spring.ioc.dependency.injection.domain.UserHolder"
+        autowire="constructor"/>
 </beans>
