@@ -1,5 +1,11 @@
 package dev.fvames.thinking.in.spring.ioc.overview.domain;
 
+import dev.fvames.thinking.in.spring.ioc.overview.enums.City;
+import org.springframework.core.io.Resource;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * TODO 类描述
  *
@@ -10,6 +16,10 @@ package dev.fvames.thinking.in.spring.ioc.overview.domain;
 public class User {
 	private String id;
 	private String name;
+	private City city;
+	private City[] workCities;
+	private List<City> lifeCities;
+	private Resource configFileLocation;
 
 	public static User createUser() {
 		User user = new User();
@@ -34,11 +44,47 @@ public class User {
 		this.name = name;
 	}
 
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public City[] getWorkCities() {
+		return workCities;
+	}
+
+	public void setWorkCities(City[] workCities) {
+		this.workCities = workCities;
+	}
+
+	public List<City> getLifeCities() {
+		return lifeCities;
+	}
+
+	public void setLifeCities(List<City> lifeCities) {
+		this.lifeCities = lifeCities;
+	}
+
+	public Resource getConfigFileLocation() {
+		return configFileLocation;
+	}
+
+	public void setConfigFileLocation(Resource configFileLocation) {
+		this.configFileLocation = configFileLocation;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
 				"id='" + id + '\'' +
 				", name='" + name + '\'' +
+				", city=" + city +
+				", workCities=" + Arrays.toString(workCities) +
+				", lifeCities=" + lifeCities +
+				", configFileLocation=" + configFileLocation +
 				'}';
 	}
 }

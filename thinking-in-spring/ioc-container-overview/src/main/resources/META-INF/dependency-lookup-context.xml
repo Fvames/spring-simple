@@ -7,6 +7,10 @@
     <bean id="user" class="dev.fvames.thinking.in.spring.ioc.overview.domain.User">
         <property name="id" value="1"/>
         <property name="name" value="王嘉尔"/>
+        <property name="city" value="BEIJING" />
+        <property name="workCities" value="BEIJING,HANGZHOU" />
+        <property name="lifeCities" value="BEIJING,SHANGHAI" />
+        <property name="configFileLocation" value="classpath:/META-INF/user-config.properties" />
     </bean>
 
     <bean id="superUser" class="dev.fvames.thinking.in.spring.ioc.overview.domain.SuperUser" parent="user"
