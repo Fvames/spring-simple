@@ -7,8 +7,9 @@
     <import resource="dependency-lookup-context.xml" />
 
     <bean class="dev.fvames.thinking.in.spring.ioc.dependency.injection.domain.UserHolder"
-          autowire="constructor" >
-          <!--autowire="byType" > -->
+          autowire="byName" >
+        <!--autowire="constructor" >-->
+        <!--autowire="byType" > -->
     </bean>
 
 
