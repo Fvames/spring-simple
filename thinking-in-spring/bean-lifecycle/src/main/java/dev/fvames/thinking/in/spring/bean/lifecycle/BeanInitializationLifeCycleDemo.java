@@ -8,13 +8,13 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 /**
- * Bean Definition Merged
+ * Bean 初始化生命周期
  *
  * @author
  * @version 2020/3/30 16:49
  */
 
-public class BeanDefinitionMergedDemo {
+public class BeanInitializationLifeCycleDemo {
 
 	public static void main(String[] args) {
 		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
