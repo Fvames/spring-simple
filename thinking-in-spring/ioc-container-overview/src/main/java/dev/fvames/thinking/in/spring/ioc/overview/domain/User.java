@@ -98,6 +98,6 @@ public class User implements BeanNameAware {
 
 	@PreDestroy
 	public void destory() {
-		System.out.println(beanName + "正在被销毁");
+		System.out.println(beanName + " 正在被销毁");
 	}
 }
