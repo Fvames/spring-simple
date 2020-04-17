@@ -13,6 +13,6 @@ public class UserNameSpaceHandler extends NamespaceHandlerSupport {
 
 	@Override
 	public void init() {
-		registerBeanDefinitionParser("users", new UserBeanDefinitionParser());
+		registerBeanDefinitionParser("user", new UserBeanDefinitionParser());
 	}
 }
