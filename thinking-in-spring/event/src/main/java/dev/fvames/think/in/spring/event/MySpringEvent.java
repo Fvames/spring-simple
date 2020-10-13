@@ -3,7 +3,7 @@ package dev.fvames.think.in.spring.event;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * TODO 类描述
+ * 自定义 Spring 事件
  *
  * @author
  * @version 2020/9/11 17:11
